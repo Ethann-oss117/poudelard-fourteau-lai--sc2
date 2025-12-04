@@ -17,6 +17,6 @@ def modifier_argent(joueur,montant) :
 
 
 def ajouter_objet(joueur,cle,objet) :
-    if cle =="sotileges" or cle == "inventaire" : #on vérifie que la cle corresponde a une des 2 listes
+    if cle =="sotileges" or cle == "inventaire" :
         joueur[cle].append(objet)
 
