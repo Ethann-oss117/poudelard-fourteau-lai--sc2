@@ -18,12 +18,9 @@ def demander_choix(message, options):
     print(message)
     for i in range(len(options)):
         print(i+1,". ", options[i], "\n")
-    choix=int(input("Votre choix ? (Saisir le nombre associé)"))
-    while choix is None or choix < 1 or choix > len(options):
-        print("Veuillez saisir un nombre entre" + "(1-"+str(len(options))+") ")
-        choix = int(input("Votre choix ? (Saisir le nombre associé)"))
-        choix=choix-1
+    choix=demander_nombre("Votre choix ?", 1, len(options))
     return choix
+
 
 def load_fichier(chemin_fichier):
     with open(chemin_fichier, "r") as fichier:
