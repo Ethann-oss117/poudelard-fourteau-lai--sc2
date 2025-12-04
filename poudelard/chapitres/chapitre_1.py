@@ -38,9 +38,10 @@ def recevoir_lettre():
         print("Le monde magique ne saura jamais que vous existiez... Fin du jeu.")
         exit()
 
+def rencontrer_hagrid
 
 
 
-print(recevoir_lettre())
+
 
 
