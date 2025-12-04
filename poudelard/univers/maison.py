@@ -35,23 +35,6 @@ def afficher_maison_gagnante(maisons):
         print("les maisons gagnantes sont",gagnante)
 
 
-questions = [
-     (
-     "Tu vois un ami en danger. Que fais-tu ?",
-     ["Je fonce l'aider", "Je réfléchis à un plan", "Je cherchede l’aide", "Je reste calme et j’observe"],
-     ["Gryffondor", "Serpentard", "Poufsouffle", "Serdaigle"]
-     ),
-     (
-     "Quel trait te décrit le mieux ?",
-     ["Courageux et loyal", "Rusé et ambitieux", "Patient ettravailleur", "Intelligent et curieux"],
-     ["Gryffondor", "Serpentard", "Poufsouffle", "Serdaigle"]
-     ),
-     (
-     "Face à un défi difficile, tu...",
-     ["Fonces sans hésiter", "Cherches la meilleure stratégie",
-    "Comptes sur tes amis", "Analyses le problème"],
-     ["Gryffondor", "Serpentard", "Poufsouffle", "Serdaigle"]
-     )]
 
 def repartition_des_maisons(joueur,question) :
     maisons_choix = {
@@ -61,4 +44,4 @@ def repartition_des_maisons(joueur,question) :
         "Serdaigle": 0
     }
     for cle in maisons_choix :
-        maisons_choix[cle]
+        maisons_choix[cle] == joueur[cle]
