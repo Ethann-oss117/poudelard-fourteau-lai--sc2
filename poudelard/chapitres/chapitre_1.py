@@ -1,5 +1,6 @@
 from poudelard.univers.personnage import *
 from poudelard.utils.input_utils import *
+
 def introduction():
     print("Bienvenue dans le Monde Magique !")
     print("Vous êtes sur le point vivre la genèse de votre histoire.")
@@ -38,10 +39,12 @@ def recevoir_lettre():
         print("Le monde magique ne saura jamais que vous existiez... Fin du jeu.")
         exit()
 
-def rencontrer_hagrid
+def rencontrer_hagrid(personnage):
+    print("Hagrid :  Salut ", personnage["Prénom"], "! Je suis venu t’aider à faire tes achats sur le Chemin de Traverse. ")
+    c=demander_choix("Voulez-vous suivre Hagrid ?", ["Oui", "Non"])
+    if c == 2:
+        print("Hagrid insiste gentiment et vous entraîne quand même avec lui!")
 
-
-
-
-
-
+def acheter_fourniture(personnage):
+    dico_shop=load_fichier(data/inventaire.json)
+    print("Bienvenue sur le Chemin de Traverse !")

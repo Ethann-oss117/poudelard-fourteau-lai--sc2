@@ -4,14 +4,14 @@ def demander_texte(message):
     txt=str(input(message))
     while txt is None or txt == "":
         txt=str(input(message))
-    txt=txt.strip() #On fait strip pour enlever les espaces en excès qui vont rendre l'affichage désordonné
+    txt=txt.strip()
     return txt
 
 def demander_nombre(message, min_val=None, max_val=None):
-    nb=int(input(message+" ("+str(min_val)+"-"+str(max_val)+") ")) #pour afficher l'intervalle des nombres à demander
-    while nb is None or nb < min_val or nb > max_val or nb == "": #Saisie sécurisée
-        print("Veuillez entre un nombre entre "+" ("+str(min_val)+"-"+str(max_val)+") ")
-        nb = int(input(message + " (" + str(min_val) + "-" + str(max_val) + ") "))
+    nb=int(input(message+" ("+str(min_val)+"-"+str(max_val)+") "))
+    while nb is None or nb < min_val or nb > max_val or nb == "":
+        print("Veuillez entre un nombre entre "+" ("+str(min_val)+"-"+str(max_val)+") :")
+        nb = int(input(message + " (" + str(min_val) + "-" + str(max_val) + ") :"))
     return nb
 
 def demander_choix(message, options):
