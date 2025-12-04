@@ -23,6 +23,6 @@ def demander_choix(message, options):
 
 
 def load_fichier(chemin_fichier):
-    with open(chemin_fichier, "r") as fichier:
+    with open(chemin_fichier, "r", encoding='utf-8') as fichier:
         data = json.load(fichier)
     return data

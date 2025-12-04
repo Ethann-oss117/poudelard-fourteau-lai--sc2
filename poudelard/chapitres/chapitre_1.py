@@ -1,3 +1,4 @@
+from poudelard.univers import personnage
 from poudelard.univers.personnage import *
 from poudelard.utils.input_utils import *
 
@@ -46,5 +47,5 @@ def rencontrer_hagrid(personnage):
         print("Hagrid insiste gentiment et vous entraîne quand même avec lui!")
 
 def acheter_fourniture(personnage):
-    dico_shop=load_fichier(data/inventaire.json)
+    dico_shop=load_fichier("../data/inventaire.json")
     print("Bienvenue sur le Chemin de Traverse !")
