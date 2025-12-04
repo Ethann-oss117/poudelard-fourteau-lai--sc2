@@ -1,5 +1,5 @@
 from poudelard.univers.personnage import *
-
+from poudelard.utils.input_utils import *
 def introduction():
     print("Bienvenue dans le Monde Magique !")
     print("Vous êtes sur le point vivre la genèse de votre histoire.")
@@ -8,32 +8,39 @@ def introduction():
 
 def creer_personnage():
     attributs={}
-    nom=str(input("Entrez le nom de votre personnage : "))
-    prenom=str(input("Entrez le prénom de votre personnage : "))
+    nom=demander_texte("Entrez le nom de votre personnage : ")
+    prenom=demander_texte("Entrez le prénom du personnage : ")
     print("\n")
     print("\n")
     print("Choisissez vos attributs : ")
-    courage=int(input("Niveau de courage (1-10) : "))
-    while courage<1 or courage>10:
-        courage=int(input("Niveau de courage (1-10) : "))
+    courage=demander_nombre("Niveau de courage", 1,10)
     attributs["Courage"]=courage
 
-    intelligence=int(input("Niveau d'intelligence (1-10) : "))
-    while intelligence<1 or intelligence>10:
-        intelligence=int(input("Niveau d'intelligence (1-10) : "))
+    intelligence=demander_nombre("Niveau d'intelligence", 1,10)
     attributs["Intelligence"]=intelligence
 
-    loyaute=int(input("Niveau de loyauté (1-10) : "))
-    while loyaute<1 or loyaute>10:
-        loyaute=int(input("Niveau de loyauté (1-10) : "))
+    loyaute=demander_nombre("Niveau de loyauté", 1,10)
     attributs["Loyaute"]=loyaute
 
-    ambition=int(input("Niveau de ambition (1-10) : "))
-    while ambition<1 or ambition>10:
-        ambition=int(input("Niveau de ambition (1-10) : "))
+    ambition=demander_nombre("Niveau de ambition", 1,10)
     attributs["Ambition"]=ambition
 
     print("Profil du personnage : \n")
     print(initialiser_personnage(nom,prenom,attributs))
+
+def recevoir_lettre():
+    print("Une chouette traverse la fenêtre et vous apporte une lettre scellée du sceau de Poudlard... \n")
+    print("Cher élève, Nous avons le plaisir de vous informer que vous avez été admis à l’école de sorcellerie de Poudlard !  \n")
+    chx=demander_choix("Souhaitez-vous accepter cette invitation et partir pour Poudlard ?", ["Oui, bien sûr !", "Non, je préfère rester avec l’oncle Vernon..."])
+    if chx == 2:
+        print("Vous déchirez la lettre, l’oncle Vernon pousse un cri de joie: \n")
+        print("« EXCELLENT ! Enfin quelqu’un de NORMAL dans cette maison ! » \n")
+        print("Le monde magique ne saura jamais que vous existiez... Fin du jeu.")
+        exit()
+
+
+
+
+print(recevoir_lettre())
 
 
