@@ -1,5 +1,3 @@
-from xml.sax.expatreader import AttributesImpl
-
 
 def initialiser_personnage(Nom, Prenom, attributs):
     argent = 100
