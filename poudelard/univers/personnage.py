@@ -1,3 +1,6 @@
+from xml.sax.expatreader import AttributesImpl
+
+
 def initialiser_personnage(Nom, Prenom, attributs):
     argent = 100
 
@@ -7,10 +10,21 @@ def initialiser_personnage(Nom, Prenom, attributs):
         "Argent": argent,
         "Inventaire": [],
         "Sortileges": [],
-        "Attributs": attributs
+        "Attributs": {}
     }
 
     return joueur
+
+def afficher_joueur(joueur):
+    print("Profil du personnage :")
+    print("Nom :", joueur["Nom"])
+    print("Prenom :", joueur["Prenom"])
+    print("Argent :", joueur["Argent"])
+    print("Inventaire :", joueur["Inventaire"])
+    print("Sortileges :", joueur["Sortileges"])
+    print("Attributs :")
+    for cle,val in joueur["Attributs"].items():
+        print(" - ",cle," : ",val)
 
 def modifier_argent(joueur,montant) :
     joueur["argent"] = joueur["argent"] + montant
