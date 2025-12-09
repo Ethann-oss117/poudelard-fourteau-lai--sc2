@@ -1,4 +1,4 @@
-from poudelard.univers import personnage
+
 from poudelard.univers.personnage import *
 from poudelard.utils.input_utils import *
 
@@ -53,6 +53,10 @@ def acheter_fourniture(personnage):
     obligatoires = ["Baguette magique", "Robe de sorcier", "Manuel de potions"]
 
     while len(obligatoires) > 0:
+        total_obligatoires = 0
+        for objet in obligatoires:
+            total_obligatoires+=dico_shop[objet]
+
         print("Catalogue des objets disponibles :")
         i=1
         for obj in dico_shop:
@@ -76,15 +80,19 @@ def acheter_fourniture(personnage):
         for nom in dico_shop:
             if k == choix:
                 prix = dico_shop[nom]
-                if personnage["Argent"] < prix:
-                    print("Vous n'avez pas assez d'argent ! Fin du jeu.")
-                    exit()
-                modifier_argent(personnage,-prix)
-                ajouter_objet(personnage, "Inventaire", nom)
-                print("Vous avez acheté :", nom, "(-"+str(prix)+" galions).")
-                if nom in obligatoires:
-                    obligatoires.remove(nom)
-        k=k+1
+                if personnage["Argent"] - prix < total_obligatoires:
+                    choix = demander_choix("Attention, cet achat risque de vous empêcher d’acheter tout le matériel obligatoire. Voulez-vous continuer ?",["Oui", "Non"])
+                    if choix == 1:
+                        print("Vous n'aurez pas assez d'argent pour tout ! Fin du jeu.")
+                        exit()
+
+                    else:
+                        modifier_argent(personnage,-prix)
+                        ajouter_objet(personnage, "Inventaire", nom)
+                        print("Vous avez acheté :", nom, "(-"+str(prix)+" galions).")
+                        if nom in obligatoires:
+                            obligatoires.remove(nom)
+            k=k+1
 
     print("Tous les objets obligatoires ont été achetés !")
     print("\n")
@@ -121,4 +129,6 @@ def acheter_fourniture(personnage):
 
     print("Tous les objets obligatoires ont été achetés avec succès ! Voici votre inventaire final :")
     #afficher_personnage(personnage)
+
+
 
