@@ -47,5 +47,78 @@ def rencontrer_hagrid(personnage):
         print("Hagrid insiste gentiment et vous entraîne quand même avec lui!")
 
 def acheter_fourniture(personnage):
-    dico_shop=load_fichier("../data/inventaire.json")
+    dico_shop = load_fichier("../data/inventaire.json")
     print("Bienvenue sur le Chemin de Traverse !")
+
+    obligatoires = ["Baguette magique", "Robe de sorcier", "Manuel de potions"]
+
+    while len(obligatoires) > 0:
+        print("Catalogue des objets disponibles :")
+        i=1
+        for obj in dico_shop:
+            print(str(i) + ". " + obj+" - "+str(dico_shop[obj])+ " galions")
+            i=i+1
+
+        print("\n")
+        print("Vous avez", personnage["Argent"], "galions.")
+        print("Objets obligatoires restant à acheter : \n")
+        obj_restant=""
+        for i in len(obligatoires):
+            if i < len(obligatoires)-1:
+                obj_restant += str(obligatoires[i])
+            else:
+                obj_restant += str(obligatoires[i])+", "
+
+        print("\n")
+
+        choix= demander_nombre("Entrez le numéro à acheter", 1, len(obligatoires))
+        k=1
+        for nom in dico_shop:
+            if k == choix:
+                prix = dico_shop[nom]
+                if personnage["Argent"] < prix:
+                    print("Vous n'avez pas assez d'argent ! Fin du jeu.")
+                    exit()
+                modifier_argent(personnage,-prix)
+                ajouter_objet(personnage, "Inventaire", nom)
+                print("Vous avez acheté :", nom, "(-"+str(prix)+" galions).")
+                if nom in obligatoires:
+                    obligatoires.remove(nom)
+        k=k+1
+
+    print("Tous les objets obligatoires ont été achetés !")
+    print("\n")
+
+    print("Il est temps de choisir votre animal de compagnie pour Poudlard !")
+    print("Vous avez", personnage["Argent"], "galions.")
+
+    animaux = {
+        "Chouette": 20,
+        "Chat": 15,
+        "Rat": 10,
+        "Crapaud": 5
+    }
+
+    print("Voici les animaux disponibles :")
+    l = 1
+    for n in animaux:
+        print(str(l) + ". " + n + " - " + str(animaux[n]), "galions")
+        l = l + 1
+
+    choix_animal= demander_nombre("Quel animal voulez vous ? ", 1, len(animaux))
+
+    l=1
+    for n in animaux:
+        if l == choix_animal:
+            prix_animal = animaux[n]
+            if personnage["Argent"] < prix_animal:
+                print("Vous n’avez pas assez d’argent ! Fin du jeu.")
+                exit()
+            modifier_argent(personnage, -prix_animal)
+            ajouter_objet(personnage, "Inventaire", n)
+            print("Vous avez choisi :", n, "(-" + str(prix_animal), "galions).")
+        l = l + 1
+
+    print("Tous les objets obligatoires ont été achetés avec succès ! Voici votre inventaire final :")
+    #afficher_personnage(personnage)
+
