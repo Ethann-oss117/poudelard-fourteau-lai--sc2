@@ -55,44 +55,46 @@ def acheter_fourniture(personnage):
     while len(obligatoires) > 0:
         total_obligatoires = 0
         for objet in obligatoires:
-            total_obligatoires+=dico_shop[objet]
+            for cle in dico_shop:
+                nom_obj = dico_shop[cle][0]
+                prix_obj = dico_shop[cle][1]
+                if nom_obj == objet:
+                    total_obligatoires += prix_obj
 
         print("Catalogue des objets disponibles :")
-        i=1
-        for obj in dico_shop:
-            print(str(i) + ". " + obj+" - "+str(dico_shop[obj])+ " galions")
-            i=i+1
+        i = 1
+        for cle in dico_shop:
+            print(str(i) + ". " + dico_shop[cle][0] + " - " + str(dico_shop[cle][1]) + " galions")
+            i = i + 1
 
         print("\n")
         print("Vous avez", personnage["Argent"], "galions.")
         print("Objets obligatoires restant à acheter : \n")
-        obj_restant=""
-        for i in len(obligatoires):
-            if i < len(obligatoires)-1:
-                obj_restant += str(obligatoires[i])
-            else:
-                obj_restant += str(obligatoires[i])+", "
+        for obj in obligatoires:
+            print(obj, "\n")
 
-        print("\n")
 
-        choix= demander_nombre("Entrez le numéro à acheter", 1, len(obligatoires))
-        k=1
-        for nom in dico_shop:
+        choix = demander_nombre("Entrez le numéro à acheter", 1, len(dico_shop))
+
+        k = 1
+        for cle in dico_shop:
             if k == choix:
-                prix = dico_shop[nom]
-                if personnage["Argent"] - prix < total_obligatoires:
-                    choix = demander_choix("Attention, cet achat risque de vous empêcher d’acheter tout le matériel obligatoire. Voulez-vous continuer ?",["Oui", "Non"])
-                    if choix == 1:
+                nom = dico_shop[cle][0]
+                prix = dico_shop[cle][1]
+                reste = personnage["Argent"] - prix
+
+                if reste < total_obligatoires:
+                    choix2 = demander_choix("Attention, cet achat risque de vous empêcher d’acheter tout le matériel obligatoire. Voulez-vous continuer ? \n", ["Oui", "Non"])
+                    if choix2 == 1:
                         print("Vous n'aurez pas assez d'argent pour tout ! Fin du jeu.")
                         exit()
+            modifier_argent(personnage, -prix)
+            ajouter_objet(personnage, "Inventaire", nom)
+            print("Vous avez acheté :", nom, "(-" + str(prix) + " galions).")
+            if nom in obligatoires:
+                obligatoires.remove(nom)
 
-                    else:
-                        modifier_argent(personnage,-prix)
-                        ajouter_objet(personnage, "Inventaire", nom)
-                        print("Vous avez acheté :", nom, "(-"+str(prix)+" galions).")
-                        if nom in obligatoires:
-                            obligatoires.remove(nom)
-            k=k+1
+            k = k + 1
 
     print("Tous les objets obligatoires ont été achetés !")
     print("\n")
@@ -115,7 +117,7 @@ def acheter_fourniture(personnage):
 
     choix_animal= demander_nombre("Quel animal voulez vous ? ", 1, len(animaux))
 
-    l=1
+    l = 1
     for n in animaux:
         if l == choix_animal:
             prix_animal = animaux[n]
@@ -128,7 +130,10 @@ def acheter_fourniture(personnage):
         l = l + 1
 
     print("Tous les objets obligatoires ont été achetés avec succès ! Voici votre inventaire final :")
-    #afficher_personnage(personnage)
+    afficher_personnage(personnage)
+
+
+acheter_fourniture({'Nom': 'LAI', 'Prenom': 'Baptiste', 'Argent': 100, 'Inventaire': [], 'Sortileges': [], 'Attributs': {'Courage': 6, 'Intelligence': 6, 'Loyaute': 6, 'Ambition': 6}})
 
 
 

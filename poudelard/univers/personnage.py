@@ -8,12 +8,12 @@ def initialiser_personnage(Nom, Prenom, attributs):
         "Argent": argent,
         "Inventaire": [],
         "Sortileges": [],
-        "Attributs": {}
+        "Attributs": attributs
     }
 
     return joueur
 
-def afficher_joueur(joueur):
+def afficher_personnage(joueur):
     print("Profil du personnage :")
     print("Nom :", joueur["Nom"])
     print("Prenom :", joueur["Prenom"])
@@ -25,7 +25,7 @@ def afficher_joueur(joueur):
         print(" - ",cle," : ",val)
 
 def modifier_argent(joueur,montant) :
-    joueur["argent"] = joueur["argent"] + montant
+    joueur["argent"] = joueur["Argent"] + montant
 
 
 def ajouter_objet(joueur,cle,objet) :
