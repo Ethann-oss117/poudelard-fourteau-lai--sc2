@@ -40,3 +40,14 @@ def rencontrer_amis(joueur):
     print("Tes choix semblent déjà en dire long sur ta personnalité !")
     print()
     print("Tes attributs mis à jour :",joueur["Attributs"])
+
+def mot_de_bienvenue() :
+    print("Bienvenue à Poudlard, jeune sorcier")
+    input()
+    print("Les portes du château s’ouvrent devant toi, révélant des couloirs mystérieux, des sortilèges anciens et des rencontres inoubliables.")
+    input()
+    print("Ton aventure ne fait que commencer .")
+    input()
+    print("Je te souhaite bonne chance, et surtout...")
+    input()
+    print("Que la magie soit avec toi.")
