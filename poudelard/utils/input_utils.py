@@ -21,7 +21,6 @@ def demander_choix(message, options):
     choix=demander_nombre("Votre choix ?", 1, len(options))
     return choix
 
-
 def load_fichier(chemin_fichier):
     with open(chemin_fichier, "r", encoding='utf-8') as fichier:
         data = json.load(fichier)
