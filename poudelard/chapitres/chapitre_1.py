@@ -1,4 +1,4 @@
-
+from poudelard.univers import personnage
 from poudelard.univers.personnage import *
 from poudelard.utils.input_utils import *
 
@@ -28,7 +28,8 @@ def creer_personnage():
     attributs["Ambition"]=ambition
 
     print("Profil du personnage : \n")
-    print(initialiser_personnage(nom,prenom,attributs))
+    afficher_personnage(initialiser_personnage(nom, prenom, attributs))
+
 
 def recevoir_lettre():
     print("Une chouette traverse la fenêtre et vous apporte une lettre scellée du sceau de Poudlard... \n")
@@ -53,7 +54,7 @@ def acheter_fourniture(personnage):
     obligatoires = ["Baguette magique", "Robe de sorcier", "Manuel de potions"]
 
     while obligatoires is not []:
-        total_obligatoires = 0
+        total_obligatoires = 5
         for objet in obligatoires:
             for cle in dico_shop:
                 nom_obj = dico_shop[cle][0]
@@ -129,7 +130,11 @@ def acheter_fourniture(personnage):
     afficher_personnage(personnage)
 
 
-acheter_fourniture({'Nom': 'LAI', 'Prenom': 'Baptiste', 'Argent': 100, 'Inventaire': [], 'Sortileges': [], 'Attributs': {'Courage': 6, 'Intelligence': 6, 'Loyaute': 6, 'Ambition': 6}})
-
-
-
+def lancer_chapitre_1():
+    introduction()
+    perso=creer_personnage()
+    recevoir_lettre()
+    rencontrer_hagrid(perso)
+    acheter_fourniture(perso)
+    print("Fin du Chapitre 1 ! Votre aventure commence à Poudlard...")
+    return perso
