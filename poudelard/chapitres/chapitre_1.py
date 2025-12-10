@@ -52,49 +52,45 @@ def acheter_fourniture(personnage):
 
     obligatoires = ["Baguette magique", "Robe de sorcier", "Manuel de potions"]
 
-    while len(obligatoires) > 0:
+    while obligatoires is not []:
         total_obligatoires = 0
         for objet in obligatoires:
             for cle in dico_shop:
                 nom_obj = dico_shop[cle][0]
                 prix_obj = dico_shop[cle][1]
                 if nom_obj == objet:
-                    total_obligatoires += prix_obj
+                    total_obligatoires += prix_obj #ok
 
         print("Catalogue des objets disponibles :")
         i = 1
         for cle in dico_shop:
             print(str(i) + ". " + dico_shop[cle][0] + " - " + str(dico_shop[cle][1]) + " galions")
-            i = i + 1
+            i = i + 1 #ok
 
         print("\n")
         print("Vous avez", personnage["Argent"], "galions.")
         print("Objets obligatoires restant à acheter : \n")
         for obj in obligatoires:
-            print(obj, "\n")
+            print(obj, "\n") #ok
 
 
         choix = demander_nombre("Entrez le numéro à acheter", 1, len(dico_shop))
 
-        k = 1
         for cle in dico_shop:
-            if k == choix:
-                nom = dico_shop[cle][0]
-                prix = dico_shop[cle][1]
-                reste = personnage["Argent"] - prix
-
-                if reste < total_obligatoires:
+            if str(choix) == cle:
+                nom_obj_temp = dico_shop[cle][0]
+                prix_obj_temp = dico_shop[cle][1]
+                if personnage["Argent"]-prix_obj_temp <= total_obligatoires and nom_obj_temp not in obligatoires:
                     choix2 = demander_choix("Attention, cet achat risque de vous empêcher d’acheter tout le matériel obligatoire. Voulez-vous continuer ? \n", ["Oui", "Non"])
                     if choix2 == 1:
                         print("Vous n'aurez pas assez d'argent pour tout ! Fin du jeu.")
                         exit()
-            modifier_argent(personnage, -prix)
-            ajouter_objet(personnage, "Inventaire", nom)
-            print("Vous avez acheté :", nom, "(-" + str(prix) + " galions).")
-            if nom in obligatoires:
-                obligatoires.remove(nom)
-
-            k = k + 1
+                else:
+                    modifier_argent(personnage,-prix_obj_temp)
+                    ajouter_objet(personnage,"Inventaire", nom_obj_temp)
+                    print("Vous avez acheté :", nom_obj_temp, "(-" + str(prix_obj_temp) + " galions).")
+                    if nom_obj_temp in obligatoires:
+                        obligatoires.remove(nom_obj_temp)
 
     print("Tous les objets obligatoires ont été achetés !")
     print("\n")
