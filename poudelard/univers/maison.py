@@ -1,3 +1,4 @@
+from poudelard.utils.input_utils import demander_choix
 
 maisons = {
     "Gryffondor": 0,
@@ -55,7 +56,7 @@ questions = [
  )
 ]
 
-def repartition_des_maisons(joueur,question) :
+def repartition_des_maisons(joueur,questions) :
     points = {
         "Gryffondor": 0,
         "Serpentard": 0,
@@ -69,4 +70,20 @@ def repartition_des_maisons(joueur,question) :
     points["Poufsouffle"] += attributs["loyauté"] * 2
     points["Serpentard"] += attributs["ambition"] * 2
 
+    for question in questions :
+        choix = demander_choix(question[0],question[1])
+        if choix ==1 :
+            points["Gryffondor"] += 3
+        elif choix ==2 :
+            points["Serpentard"] += 3
+        elif choix ==3 :
+            points["Poufsouffle"] += 3
+        else :
+            points["Serpentard"] += 3
+    maxi=0
+    for cle in points:
+        if points[cle] >= maxi :
+            maxi=points[cle]
+
+    return maxi
 
