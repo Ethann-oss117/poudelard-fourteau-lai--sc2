@@ -23,6 +23,8 @@ def afficher_personnage(joueur):
     print("Attributs :")
     for cle,val in joueur["Attributs"].items():
         print(" - ",cle," : ",val)
+    print("\n")
+
 
 def modifier_argent(joueur,montant) :
     joueur["Argent"] = joueur["Argent"] + montant

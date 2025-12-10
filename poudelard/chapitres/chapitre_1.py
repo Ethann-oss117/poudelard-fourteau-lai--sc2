@@ -13,8 +13,7 @@ def creer_personnage():
     nom=demander_texte("Entrez le nom de votre personnage : ")
     prenom=demander_texte("Entrez le prénom du personnage : ")
     print("\n")
-    print("\n")
-    print("Choisissez vos attributs : ")
+    print("Choisissez vos attributs : \n")
     courage=demander_nombre("Niveau de courage", 1,10)
     attributs["Courage"]=courage
 
@@ -26,15 +25,14 @@ def creer_personnage():
 
     ambition=demander_nombre("Niveau de ambition", 1,10)
     attributs["Ambition"]=ambition
-
-    print("Profil du personnage : \n")
     afficher_personnage(initialiser_personnage(nom, prenom, attributs))
+    return initialiser_personnage(nom, prenom, attributs)
 
 
 def recevoir_lettre():
     print("Une chouette traverse la fenêtre et vous apporte une lettre scellée du sceau de Poudlard... \n")
     print("Cher élève, Nous avons le plaisir de vous informer que vous avez été admis à l’école de sorcellerie de Poudlard !  \n")
-    chx=demander_choix("Souhaitez-vous accepter cette invitation et partir pour Poudlard ?", ["Oui, bien sûr !", "Non, je préfère rester avec l’oncle Vernon..."])
+    chx=demander_choix("Souhaitez-vous accepter cette invitation et partir pour Poudlard ? \n", ["Oui, bien sûr !", "Non, je préfère rester avec l’oncle Vernon..."])
     if chx == 2:
         print("Vous déchirez la lettre, l’oncle Vernon pousse un cri de joie: \n")
         print("« EXCELLENT ! Enfin quelqu’un de NORMAL dans cette maison ! » \n")
@@ -42,8 +40,8 @@ def recevoir_lettre():
         exit()
 
 def rencontrer_hagrid(personnage):
-    print("Hagrid :  Salut ", personnage["Prénom"], "! Je suis venu t’aider à faire tes achats sur le Chemin de Traverse. ")
-    c=demander_choix("Voulez-vous suivre Hagrid ?", ["Oui", "Non"])
+    print("Hagrid :  Salut ", personnage["Prenom"], "! Je suis venu t’aider à faire tes achats sur le Chemin de Traverse. ")
+    c=demander_choix("Voulez-vous suivre Hagrid ? \n", ["Oui", "Non"])
     if c == 2:
         print("Hagrid insiste gentiment et vous entraîne quand même avec lui!")
 
@@ -53,7 +51,7 @@ def acheter_fourniture(personnage):
 
     obligatoires = ["Baguette magique", "Robe de sorcier", "Manuel de potions"]
 
-    while obligatoires is not []:
+    while obligatoires != []:
         total_obligatoires = 5
         for objet in obligatoires:
             for cle in dico_shop:
@@ -138,3 +136,5 @@ def lancer_chapitre_1():
     acheter_fourniture(perso)
     print("Fin du Chapitre 1 ! Votre aventure commence à Poudlard...")
     return perso
+
+lancer_chapitre_1()
