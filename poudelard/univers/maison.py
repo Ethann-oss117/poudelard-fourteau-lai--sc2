@@ -65,10 +65,10 @@ def repartition_des_maisons(joueur,questions) :
     }
 
     attributs = joueur["Attributs"]
-    points["Gryffondor"] += attributs["courage"] * 2
-    points["Serdaigle"] += attributs["intelligence"] * 2
-    points["Poufsouffle"] += attributs["loyauté"] * 2
-    points["Serpentard"] += attributs["ambition"] * 2
+    points["Gryffondor"] += attributs["Courage"] * 2
+    points["Serdaigle"] += attributs["Intelligence"] * 2
+    points["Poufsouffle"] += attributs["Loyaute"] * 2
+    points["Serpentard"] += attributs["Ambition"] * 2
 
     for question in questions :
         choix = demander_choix(question[0],question[1])
