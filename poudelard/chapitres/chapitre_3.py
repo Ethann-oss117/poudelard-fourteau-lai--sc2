@@ -1,5 +1,6 @@
 from random import *
 
+from poudelard.chapitres.chapitre_1 import creer_personnage
 from poudelard.univers.personnage import ajouter_objet
 from poudelard.utils.input_utils import load_fichier
 
@@ -34,5 +35,5 @@ def apprendre_sorts(joueur, chemin_fichier="../data/sorts.json"):
         for val in sorts:
             if val["nom"]==joueur["Sortileges"][i]:
                 print("- ", joueur["Sortileges"][i], " ("+str(val["type"])+")", " : ", val["description"])
-
+apprendre_sorts(creer_personnage())
 
