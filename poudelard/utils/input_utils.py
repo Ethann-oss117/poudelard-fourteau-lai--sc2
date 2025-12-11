@@ -8,12 +8,55 @@ def demander_texte(message):
     return txt
 
 def demander_nombre(message, min_val=None, max_val=None):
-    nb=input(message+" ("+str(min_val)+"-"+str(max_val)+") ")
-    while nb is None or int(nb) < min_val or int(nb) > max_val or nb == "":
-        print("Veuillez entre un nombre entre "+" ("+str(min_val)+"-"+str(max_val)+") :")
-        nb = input(message + " (" + str(min_val) + "-" + str(max_val) + ") :")
-    nb=int(nb)
-    return nb
+    def est_chiffre(n):
+        if 0 <= ord(n) - ord('0') <= 9:
+            return True
+        else:
+            return False
+    def est_negatif(n):
+        if n[0]=='-':
+            return True
+        else:
+            return False
+    if min_val != None or max_val != None:
+        nb=input(message+" ("+str(min_val)+"-"+str(max_val)+") ")
+        nb = nb.strip()
+        while nb !=None:
+            while nb!="":
+                lng_nb=len(nb)
+                if est_negatif(nb)==True:
+                    lng_nb-=1
+                cpt=0
+                for val in nb:
+                    if est_chiffre(val)==True:
+                        cpt=cpt+1
+                if cpt==lng_nb:
+                    return nb
+                else:
+                    print("Veuillez saisir un Nombre : ")
+                    nb = input(message + " (" + str(min_val) + "-" + str(max_val) + ") ")
+            print("Veuillez saisir un Nombre : ")
+            nb = input(message + " (" + str(min_val) + "-" + str(max_val) + ") ")
+    else:
+        nb = input(message)
+        nb = nb.strip()
+        while nb != None:
+            while nb != "":
+                lng_nb = len(nb)
+                if est_negatif(nb) == True:
+                    lng_nb -= 1
+                cpt = 0
+                for val in nb:
+                    if est_chiffre(val) == True:
+                        cpt = cpt + 1
+                if cpt == lng_nb:
+                    return nb
+                else:
+                    print("Veuillez saisir un Nombre : ")
+                    nb = input(message)
+            print("Veuillez saisir un Nombre : ")
+            nb = input(message)
+
 
 def demander_choix(message, options):
     print(message)
