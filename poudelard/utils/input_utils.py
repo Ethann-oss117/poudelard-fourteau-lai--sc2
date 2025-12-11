@@ -9,7 +9,7 @@ def demander_texte(message):
 
 def demander_nombre(message, min_val=None, max_val=None):
     nb=input(message+" ("+str(min_val)+"-"+str(max_val)+") ")
-    while nb is None or nb < min_val or nb > max_val or nb == "":
+    while nb is None or int(nb) < min_val or int(nb) > max_val or nb == "":
         print("Veuillez entre un nombre entre "+" ("+str(min_val)+"-"+str(max_val)+") :")
         nb = input(message + " (" + str(min_val) + "-" + str(max_val) + ") :")
     nb=int(nb)
