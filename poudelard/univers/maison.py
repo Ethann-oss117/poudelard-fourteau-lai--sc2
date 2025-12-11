@@ -80,10 +80,17 @@ def repartition_des_maisons(joueur,questions) :
             points["Poufsouffle"] += 3
         else :
             points["Serpentard"] += 3
+        print()
     maxi=0
     for cle in points:
         if points[cle] >= maxi :
             maxi=points[cle]
+            maison= cle
 
-    return maxi
+    print()
+    print("Résumé des scores :")
+    for cle,val in points.items() :
+        print(cle," : ",val)
+
+    return maison
 

@@ -76,7 +76,8 @@ questions = [
 
 def ceremonie_repartition(joueur) :
     maison = repartition_des_maisons(joueur,questions)
+    print()
     print("Le Choixpeau s’exclame :",maison,"!!!")
-    print("Tu rejoins les élèves de ",maison," sous les acclamations !")
+    print("Tu rejoins les élèves de",maison,"sous les acclamations !")
 
 ceremonie_repartition(creer_personnage())
