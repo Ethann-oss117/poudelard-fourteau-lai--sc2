@@ -1,3 +1,6 @@
+from poudelard.chapitres.chapitre_1 import creer_personnage
+from poudelard.univers.maison import repartition_des_maisons
+from poudelard.univers.personnage import initialiser_personnage
 from poudelard.utils.input_utils import demander_choix
 
 
@@ -43,11 +46,37 @@ def rencontrer_amis(joueur):
 
 def mot_de_bienvenue() :
     print("Bienvenue à Poudlard, jeune sorcier")
-    input()
+    input("Appuyer sur une touche pour continuer")
     print("Les portes du château s’ouvrent devant toi, révélant des couloirs mystérieux, des sortilèges anciens et des rencontres inoubliables.")
-    input()
+    input("Appuyer sur une touche pour continuer")
     print("Ton aventure ne fait que commencer .")
-    input()
+    input("Appuyer sur une touche pour continuer")
     print("Je te souhaite bonne chance, et surtout...")
-    input()
+    input("Appuyer sur une touche pour continuer")
     print("Que la magie soit avec toi.")
+
+questions = [
+ (
+ "Tu vois un ami en danger. Que fais-tu ?",
+ ["Je fonce l'aider", "Je réfléchis à un plan", "Je cherche de l’aide", "Je reste calme et j’observe"],
+ ["Gryffondor", "Serpentard", "Poufsouffle", "Serdaigle"]
+ ),
+ (
+ "Quel trait te décrit le mieux ?",
+ ["Courageux et loyal", "Rusé et ambitieux", "Patient et travailleur", "Intelligent et curieux"],
+ ["Gryffondor", "Serpentard", "Poufsouffle", "Serdaigle"]
+ ),
+ (
+ "Face à un défi difficile, tu...",
+ ["Fonces sans hésiter", "Cherches la meilleure stratégie",
+"Comptes sur tes amis", "Analyses le problème"],
+ ["Gryffondor", "Serpentard", "Poufsouffle", "Serdaigle"]
+ )
+]
+
+def ceremonie_repartition(joueur) :
+    maison = repartition_des_maisons(joueur,questions)
+    print("Le Choixpeau s’exclame :",maison,"!!!")
+    print("Tu rejoins les élèves de ",maison," sous les acclamations !")
+
+ceremonie_repartition(creer_personnage())

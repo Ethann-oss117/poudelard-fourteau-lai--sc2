@@ -137,4 +137,3 @@ def lancer_chapitre_1():
     print("Fin du Chapitre 1 ! Votre aventure commence à Poudlard...")
     return perso
 
-lancer_chapitre_1()
