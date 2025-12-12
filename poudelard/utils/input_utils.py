@@ -31,7 +31,7 @@ def demander_nombre(message, min_val=None, max_val=None):
                     if est_chiffre(val)==True:
                         cpt=cpt+1
                 if cpt==lng_nb:
-                    return nb
+                    return int(nb)
                 else:
                     print("Veuillez saisir un Nombre : ")
                     nb = input(message + " (" + str(min_val) + "-" + str(max_val) + ") ")
@@ -50,7 +50,7 @@ def demander_nombre(message, min_val=None, max_val=None):
                     if est_chiffre(val) == True:
                         cpt = cpt + 1
                 if cpt == lng_nb:
-                    return nb
+                    return int(nb)
                 else:
                     print("Veuillez saisir un Nombre : ")
                     nb = input(message)
