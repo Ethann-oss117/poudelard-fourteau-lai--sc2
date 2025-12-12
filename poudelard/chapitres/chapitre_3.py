@@ -9,22 +9,22 @@ def apprendre_sorts(joueur, chemin_fichier="../data/sorts.json"):
     sort_def=0
     sort_uti=0
     print("Tu commences tes cours de magie à Poudlard... \n")
-    while (sort_off != 1) and (sort_def != 1) and (sort_uti != 3):
+    while (sort_off < 1) or (sort_def < 1) or (sort_uti < 3):
         sort_rdm=random.choice(sorts)
 
-        if sort_rdm["type"] == "Utilitaire":
+        if sort_rdm["type"] == "Utilitaire" and sort_uti < 3:
             sort_uti += 1
             ajouter_objet(joueur, "Sortileges",sort_rdm)
             print("Tu viens d'apprendre le sortilège : ", sort_rdm["nom"],"\n")
             sorts.remove(sort_rdm)
             input("Appuie sur Entrée pour continuer... \n")
-        if sort_rdm["type"] == "Défensif":
+        elif sort_rdm["type"] == "Défensif" and sort_def < 1:
             sort_def+=1
             ajouter_objet(joueur, "Sortileges", sort_rdm)
             print("Tu viens d'apprendre le sortilège : ", sort_rdm["nom"], "\n")
             sorts.remove(sort_rdm)
             input("Appuie sur Entrée pour continuer... \n")
-        if sort_rdm["type"] == "Offensif":
+        elif sort_rdm["type"] == "Offensif" and sort_off < 1:
             sort_off+=1
             ajouter_objet(joueur, "Sortileges",sort_rdm)
             print("Tu viens d'apprendre le sortilège : ", sort_rdm["nom"], "\n")
