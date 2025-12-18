@@ -5,7 +5,7 @@ from poudelard.utils.input_utils import demander_choix, load_fichier
 
 
 def rencontrer_amis(joueur):
-    print("Vous montez à bord du Poudlard Express. Le train démarre lentement en direction du Nord...")
+    print("Vous montez à bord du Poudlard Express. Le train démarre lentement en direction du Nord...")        #je fais le choix pour chaque personnage et attributs les point en fonction des reponse données
     print()
     print("Un garçon roux entre dans votre compartiment, l’air amical.")
     print("— Salut ! Moi c’est Ron Weasley. Tu veux bien qu’on s’assoie ensemble ?")
@@ -14,6 +14,7 @@ def rencontrer_amis(joueur):
         print("Ron sourit : — Génial ! Tu verras, Poudlard, c’est incroyable !")
         joueur["Attributs"]["Loyaute"] += 1
     else :
+        print("Ron partit la tête baissée")        #je n'hésite pas a rajouter des détail afin que le jeu permette une meilleure immersion
         joueur["Attributs"]["Ambition"] += 1
 
     print()
@@ -45,7 +46,7 @@ def rencontrer_amis(joueur):
     print("Tes attributs mis à jour :",joueur["Attributs"])
 
 def mot_de_bienvenue() :
-    print("Bienvenue à Poudlard, jeune sorcier")
+    print("Bienvenue à Poudlard, jeune sorcier")            #j'invente un dialogue poour que l'histoire soit plus immersive
     input("Appuyer sur entrée pour continuer")
     print("Les portes du château s’ouvrent devant toi, révélant des couloirs mystérieux, des sortilèges anciens et des rencontres inoubliables.")
     input()
@@ -72,18 +73,18 @@ questions = [
 "Comptes sur tes amis", "Analyses le problème"],
  ["Gryffondor", "Serpentard", "Poufsouffle", "Serdaigle"]
  )
-]
+]                                                               #je met questions ici afin de l'utiliser dans les fonction
 
 def ceremonie_repartition(joueur) :
     maison = repartition_des_maisons(joueur,questions)
-    print()
+    print()                                 #j'utilise repartition des maisons pour n'utiliser que des print
     joueur["Maison"]= maison
     print("Le Choixpeau s’exclame :",maison,"!!!")
     print("Tu rejoins les élèves de",maison,"sous les acclamations !")
 
 
 def installation_salle_commune(joueur) :
-    salle = load_fichier("../data/maisons.json")
+    salle = load_fichier("../data/maisons.json")                #j'ouvre le fichier pour utiliser le dictionnaire avec les reponse deja rédigées en fonction de la maison du joueur
     maison = joueur["Maison"]
     print("Vous suivez les préfets à travers les couloirs du château...\n")
     print(salle[maison]["emoji"], salle[maison]["description"], "\n")
@@ -91,7 +92,7 @@ def installation_salle_commune(joueur) :
     print("Les couleurs de votre maison sont :", salle[maison]["couleurs"][0], "et",salle[maison]["couleurs"][1])
 
 def lancer_chapitre_2(joueur) :
-    rencontrer_amis(joueur)
+    rencontrer_amis(joueur)         #je lance maintenant toutes les fonctions que j'ai créé dans le chapitre 2
     mot_de_bienvenue()
     ceremonie_repartition(joueur)
     installation_salle_commune(joueur)
