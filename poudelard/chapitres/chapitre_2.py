@@ -1,7 +1,7 @@
 from poudelard.chapitres.chapitre_1 import creer_personnage
 from poudelard.univers.maison import repartition_des_maisons
-from poudelard.univers.personnage import initialiser_personnage
-from poudelard.utils.input_utils import demander_choix
+from poudelard.univers.personnage import initialiser_personnage, afficher_personnage
+from poudelard.utils.input_utils import demander_choix, load_fichier
 
 
 def rencontrer_amis(joueur):
@@ -46,13 +46,13 @@ def rencontrer_amis(joueur):
 
 def mot_de_bienvenue() :
     print("Bienvenue à Poudlard, jeune sorcier")
-    input("Appuyer sur une touche pour continuer")
+    input("Appuyer sur entrée pour continuer")
     print("Les portes du château s’ouvrent devant toi, révélant des couloirs mystérieux, des sortilèges anciens et des rencontres inoubliables.")
-    input("Appuyer sur une touche pour continuer")
+    input()
     print("Ton aventure ne fait que commencer .")
-    input("Appuyer sur une touche pour continuer")
+    input()
     print("Je te souhaite bonne chance, et surtout...")
-    input("Appuyer sur une touche pour continuer")
+    input()
     print("Que la magie soit avec toi.")
 
 questions = [
@@ -77,7 +77,23 @@ questions = [
 def ceremonie_repartition(joueur) :
     maison = repartition_des_maisons(joueur,questions)
     print()
+    joueur["Maison"]= maison
     print("Le Choixpeau s’exclame :",maison,"!!!")
     print("Tu rejoins les élèves de",maison,"sous les acclamations !")
 
-ceremonie_repartition(creer_personnage())
+
+def installation_salle_commune(joueur) :
+    salle = load_fichier("../data/maisons.json")
+    maison = joueur["Maison"]
+    print("Vous suivez les préfets à travers les couloirs du château...\n")
+    print(salle[maison]["emoji"], salle[maison]["description"], "\n")
+    print(salle[maison]["message_installation"], "\n")
+    print("Les couleurs de votre maison sont :", salle[maison]["couleurs"][0], "et",salle[maison]["couleurs"][1])
+
+def lancer_chapitre_2(joueur) :
+    rencontrer_amis(joueur)
+    mot_de_bienvenue()
+    ceremonie_repartition(joueur)
+    installation_salle_commune(joueur)
+    afficher_personnage(joueur)
+    print("Le chapitre 2 est terminé")

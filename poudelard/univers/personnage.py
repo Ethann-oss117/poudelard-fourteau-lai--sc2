@@ -8,7 +8,8 @@ def initialiser_personnage(Nom, Prenom, attributs):
         "Argent": argent,
         "Inventaire": [],
         "Sortileges": [],
-        "Attributs": attributs
+        "Attributs": attributs ,
+        "Maison" :{}
     }
 
     return joueur
