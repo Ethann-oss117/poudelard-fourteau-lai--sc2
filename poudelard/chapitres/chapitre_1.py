@@ -15,7 +15,7 @@ def creer_personnage():
     print("\n")
     print("Choisissez vos attributs : \n")
     courage=demander_nombre("Niveau de courage", 1,10)
-    attributs["Courage"]=courage
+    attributs["Courage"]= courage
 
     intelligence=demander_nombre("Niveau d'intelligence", 1,10)
     attributs["Intelligence"]=intelligence
