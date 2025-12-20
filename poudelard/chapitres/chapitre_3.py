@@ -1,10 +1,12 @@
 import random
-from poudelard.univers.personnage import ajouter_objet
+
+from poudelard.univers import personnage
+from poudelard.univers.maison import actualiser_point_maison, afficher_maison_gagnante
+from poudelard.univers.personnage import ajouter_objet, afficher_personnage
 from poudelard.utils.input_utils import load_fichier, demander_texte
+from poudelard.univers.maison import maisons
 
-
-#{'Nom': 'Potter', 'Prenom': 'Harry', 'Argent': 100, 'Inventaire': [], 'Sortileges': [], 'Attributs': {'Courage': '8', 'Intelligence': '9', 'Loyaute': '10', 'Ambition': '10'}}
-
+#{'Nom': 'Potter', 'Prenom': 'Harry', 'Argent': 100, 'Inventaire': [], 'Sortileges': [], 'Attributs': {'Courage': '8', 'Intelligence': '9', 'Loyaute': '10', 'Ambition': '10'}, "Maison": "Gryffondor"}
 def apprendre_sorts(joueur, chemin_fichier="../data/sorts.json"):
     sorts=load_fichier(chemin_fichier)
     sort_off=0
@@ -66,7 +68,15 @@ def quiz_magie(joueur, chemin_fichier="../data/quiz_magie.json"):
             print("Mauvaise réponse. La bonne réponse était : ", lst_final[i]["reponse"],"\n")
 
     print("Score obtenu : ", score_final)
+    actualiser_point_maison(maisons, joueur["Maison"], +score_final)
+
 
 def lancer_chapitre_3(personnage,maisons):
-    pass
+    apprendre_sorts(personnage)
+    quiz_magie(personnage)
+    afficher_maison_gagnante(maisons)
+    print("\n")
+    afficher_personnage(personnage)
 
+lancer_chapitre_3({'Nom': 'Potter', 'Prenom': 'Harry', 'Argent': 100, 'Inventaire': [], 'Sortileges': [], 'Attributs': {'Courage': '8', 'Intelligence': '9', 'Loyaute': '10', 'Ambition': '10'}, "Maison": "Gryffondor"}
+,maisons)
